@@ -1,0 +1,337 @@
+{
+  "id": "a549cfd7-31ef-4948-91d6-ab86927849b1",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "location": {
+      "name": "location",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "pk_location_name": {
+          "name": "pk_location_name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_building": {
+          "name": "location_building",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location_city": {
+          "name": "location_city",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location_country": {
+          "name": "location_country",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "location_name_idx": {
+          "name": "location_name_idx",
+          "columns": [
+            "pk_location_name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "product": {
+      "name": "product",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "product_name": {
+          "name": "product_name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "product_description": {
+          "name": "product_description",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mfg_vendor": {
+          "name": "mfg_vendor",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "refresh_url": {
+          "name": "refresh_url",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "current_cost": {
+          "name": "current_cost",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "current_qty": {
+          "name": "current_qty",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_qty": {
+          "name": "refresh_qty",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "min_threshold_qty": {
+          "name": "min_threshold_qty",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cabinet": {
+          "name": "cabinet",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "obsolete": {
+          "name": "obsolete",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fk_location_id": {
+          "name": "fk_location_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_product_category_id": {
+          "name": "fk_product_category_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "product_name_idx": {
+          "name": "product_name_idx",
+          "columns": [
+            "product_name"
+          ],
+          "isUnique": false
+        },
+        "product_location_fk": {
+          "name": "product_location_fk",
+          "columns": [
+            "fk_location_id"
+          ],
+          "isUnique": false
+        },
+        "product_category_fk": {
+          "name": "product_category_fk",
+          "columns": [
+            "fk_product_category_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "product_fk_location_id_location_id_fk": {
+          "name": "product_fk_location_id_location_id_fk",
+          "tableFrom": "product",
+          "tableTo": "location",
+          "columnsFrom": [
+            "fk_location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "product_fk_product_category_id_product_category_id_fk": {
+          "name": "product_fk_product_category_id_product_category_id_fk",
+          "tableFrom": "product",
+          "tableTo": "product_category",
+          "columnsFrom": [
+            "fk_product_category_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "product_category": {
+      "name": "product_category",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "product_category": {
+          "name": "product_category",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fk_location_id": {
+          "name": "fk_location_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "product_category_name_idx": {
+          "name": "product_category_name_idx",
+          "columns": [
+            "product_category"
+          ],
+          "isUnique": false
+        },
+        "product_category_location_fk": {
+          "name": "product_category_location_fk",
+          "columns": [
+            "fk_location_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "product_category_fk_location_id_location_id_fk": {
+          "name": "product_category_fk_location_id_location_id_fk",
+          "tableFrom": "product_category",
+          "tableTo": "location",
+          "columnsFrom": [
+            "fk_location_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "transaction": {
+      "name": "transaction",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "transaction_time": {
+          "name": "transaction_time",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "transaction_qty": {
+          "name": "transaction_qty",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "used_scanner": {
+          "name": "used_scanner",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "recipient": {
+          "name": "recipient",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "order_num": {
+          "name": "order_num",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fk_product_id": {
+          "name": "fk_product_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "transaction_product_fk": {
+          "name": "transaction_product_fk",
+          "columns": [
+            "fk_product_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "transaction_fk_product_id_product_id_fk": {
+          "name": "transaction_fk_product_id_product_id_fk",
+          "tableFrom": "transaction",
+          "tableTo": "product",
+          "columnsFrom": [
+            "fk_product_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

@@ -79,3 +79,10 @@ export const transaction = pgTable(
     ),
   }),
 );
+
+export default {
+  location,
+  productCategory,
+  product,
+  transaction,
+};

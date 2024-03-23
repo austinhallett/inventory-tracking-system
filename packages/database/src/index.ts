@@ -1,4 +1,6 @@
-import database from "./db";
+import {db, connection} from "./db";
 import schema from "./schema";
 
-export default { database, schema };
+
+export default { schema, db, connection };
+

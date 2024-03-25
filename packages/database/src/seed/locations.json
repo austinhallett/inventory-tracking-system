@@ -1,0 +1,11 @@
+{
+    "locations": [
+        {
+            "id": 1,
+            "name": "Location 1",
+            "building": "Building 1",
+            "city": "City 1",
+            "country": "Country 1"
+        }
+    ]
+}

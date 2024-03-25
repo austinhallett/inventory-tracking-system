@@ -1,0 +1,14 @@
+{
+    "transactions": [
+        {
+            "id": 1,
+            "transactionTime": "now",
+            "userId": "test",
+            "transactionQty": 10,
+            "usedScanner": 1,
+            "recipient": "example",
+            "orderNum": "1254adsdf2345sdcac55",
+            "product": 1
+        }
+    ]
+}

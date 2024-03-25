@@ -1,0 +1,19 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "BRD4001A",
+            "description": "Board 4001A development board",
+            "vendor": "STMicroelectronics",
+            "refreshUrl": "http://www.st.com",
+            "currentCost": 10.00,
+            "currentQty": 100,
+            "refreshQty": 100,
+            "minThresholdQty": 10,
+            "cabinet": 1,
+            "obsolete": 1,
+            "location": 1,
+            "productCategory": 1
+        }
+    ]
+}
